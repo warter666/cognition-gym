@@ -33,7 +33,7 @@ def validate_endpoint(url: str) -> None:
     infos = socket.getaddrinfo(parsed.hostname, parsed.port or (443 if parsed.scheme == "https" else 80))
     for info in infos:
         ip = ipaddress.ip_address(info[4][0])
-        if ip == ipaddress.ip_address("0.0.0.0") or ip.is_link_local:
+        if ip == ipaddress.ip_address("0.0.0.0") or ip.is_link_local:  # nosec B104 — 字符串比较（拒绝未指定地址），非接口绑定
             raise ValueError(f"端点解析到禁止地址（链路本地/未指定）：{ip}")
         if not allow_private and (ip.is_loopback or ip.is_private):
             raise ValueError(f"端点解析到私网/环回地址 {ip}；本地模型请设置 GYM_ALLOW_PRIVATE_NETS=1")

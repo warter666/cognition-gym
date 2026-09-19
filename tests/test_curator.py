@@ -34,6 +34,15 @@ def test_parse_feed_rejects_entity_bombs():
         parse_feed(evil)
 
 
+def test_parse_feed_rejects_late_doctype():
+    """DOCTYPE 藏在 64KB 之外（超长前言）也必须拒绝——头部检查可被这样绕过。"""
+    padding = "<!--" + "A" * 70000 + "-->"
+    evil = ('<?xml version="1.0"?>' + padding
+            + '<!DOCTYPE r [<!ENTITY a "x">]>' + RSS.split("?>", 1)[1])
+    with pytest.raises(ValueError, match="DOCTYPE"):
+        parse_feed(evil)
+
+
 def test_curate_end_to_end(tmp_path):
     store = Store(tmp_path / "t.db")
     report = curate(store, RSS, MockLLM())

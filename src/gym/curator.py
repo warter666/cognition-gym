@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 import re
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec B405 — parse_feed 全文拒绝 DOCTYPE/ENTITY 且 2MB 封顶
 from typing import Any
 
 from . import prompts
@@ -28,11 +28,12 @@ def parse_feed(xml_text: str) -> list[dict[str, str]]:
     """RSS 2.0 / Atom 最小解析。字段：title/summary/date/link。"""
     if len(xml_text.encode()) > MAX_FEED_BYTES:
         raise ValueError("feed 超过 2MB 上限，拒绝解析")
-    # stdlib ElementTree 不禁用内部 DTD 实体，先拒绝（防实体扩展炸弹）
-    head = xml_text[:65536]
-    if re.search(r"<!DOCTYPE|<!ENTITY", head, re.IGNORECASE):
+    # stdlib ElementTree 不禁用内部 DTD 实体，全文拒绝 DOCTYPE/ENTITY（防实体扩展炸弹）。
+    # 只查头部可被超长前言绕过（DOCTYPE 合法位置在根元素前的序言里，序言可任意长）；
+    # 合法 RSS/Atom 不需要 DTD，2MB 封顶内全文正则代价可忽略。
+    if re.search(r"<!DOCTYPE|<!ENTITY", xml_text, re.IGNORECASE):
         raise ValueError("feed 含 DOCTYPE/ENTITY 声明，拒绝解析")
-    root = ET.fromstring(xml_text)
+    root = ET.fromstring(xml_text)  # nosec B314 — DOCTYPE/ENTITY 已全文拒绝，见上
     items: list[dict[str, str]] = []
     for item in root.iter():
         tag = item.tag.rsplit("}", 1)[-1]
