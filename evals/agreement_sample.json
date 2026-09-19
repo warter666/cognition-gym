@@ -1,0 +1,31 @@
+[
+  {"topic": "成瘾行为的多巴胺机制", "mode": "M1", "human_percent": 100,
+   "answer_key": [
+     {"id": 1, "type": "false_cause", "quote": "因此所有成瘾行为都源于多巴胺", "explanation": "相关非因果", "severity": "L1", "paragraph": 2},
+     {"id": 2, "type": "hasty_generalization", "quote": "可见运动足以戒除任何成瘾", "explanation": "幸存者样本", "severity": "L1", "paragraph": 4}
+   ],
+   "distractors": ["戒断症状在停止使用后数日内出现。"],
+   "marks": [
+     {"quote": "因此所有成瘾行为都源于多巴胺", "reason": "把相关说成了因果"},
+     {"quote": "可见运动足以戒除任何成瘾", "reason": "幸存者样本，过度概括"}
+   ]},
+  {"topic": "成瘾行为的多巴胺机制", "mode": "M1", "human_percent": 50,
+   "answer_key": [
+     {"id": 1, "type": "false_cause", "quote": "因此所有成瘾行为都源于多巴胺", "explanation": "相关非因果", "severity": "L1", "paragraph": 2},
+     {"id": 2, "type": "hasty_generalization", "quote": "可见运动足以戒除任何成瘾", "explanation": "幸存者样本", "severity": "L1", "paragraph": 4}
+   ],
+   "distractors": ["戒断症状在停止使用后数日内出现。"],
+   "marks": [
+     {"quote": "因此所有成瘾行为都源于多巴胺", "reason": "把相关说成了因果"}
+   ]},
+  {"topic": "成瘾行为的多巴胺机制", "mode": "M1", "human_percent": 40,
+   "answer_key": [
+     {"id": 1, "type": "false_cause", "quote": "因此所有成瘾行为都源于多巴胺", "explanation": "相关非因果", "severity": "L1", "paragraph": 2},
+     {"id": 2, "type": "hasty_generalization", "quote": "可见运动足以戒除任何成瘾", "explanation": "幸存者样本", "severity": "L1", "paragraph": 4}
+   ],
+   "distractors": ["戒断症状在停止使用后数日内出现。"],
+   "marks": [
+     {"quote": "成瘾行为都源于多巴胺", "reason": "太绝对了"},
+     {"quote": "戒断症状在停止使用后数日内出现", "reason": "这个数据可疑"}
+   ]}
+]

@@ -1,0 +1,23 @@
+[project]
+name = "cognition-gym"
+version = "0.1.0"
+description = "思辨健身房：对抗性知识生成 + 结构化思辨训练的本地引擎"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+gym = "gym.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+gym = ["data/*.json", "prompts/*.md"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

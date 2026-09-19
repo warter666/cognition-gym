@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "usage": "存入知识库结构化表，并内嵌到 02/02b/02c 生成节点提示词的 {{taxonomy}} 变量",
+  "categories": [
+    {"code": "equivocation", "name_zh": "偷换概念", "max_severity": "L2", "hint": "关键词在论证中途改变含义"},
+    {"code": "false_cause", "name_zh": "错误归因", "max_severity": "L1", "hint": "混淆相关与因果，或倒置因果方向"},
+    {"code": "slippery_slope", "name_zh": "滑坡谬误", "max_severity": "L2", "hint": "无依据的连锁推断"},
+    {"code": "hasty_generalization", "name_zh": "以偏概全", "max_severity": "L1", "hint": "样本不足即下普遍结论"},
+    {"code": "survivorship", "name_zh": "幸存者偏差", "max_severity": "L1", "hint": "只统计成功的样本"},
+    {"code": "cherry_picking", "name_zh": "选择性引用", "max_severity": "L2", "hint": "只引用真实数据中有利的一半，不伪造数据"},
+    {"code": "appeal_authority", "name_zh": "诉诸不当权威", "max_severity": "L1", "hint": "引用真实权威但越界发言"},
+    {"code": "false_analogy", "name_zh": "过度类比", "max_severity": "L2", "hint": "M3 专属：表面相似但结构不同源"},
+    {"code": "unfounded_premise", "name_zh": "断言未证前提", "max_severity": "L1", "hint": "把假设当公理使用"},
+    {"code": "scope_shift", "name_zh": "结论越界外推", "max_severity": "L2", "hint": "M2 高发：改变限定范围/对象/条件，如小鼠→人类"},
+    {"code": "composition", "name_zh": "合成/分割谬误", "max_severity": "L3", "hint": "个体性质与整体性质互推"},
+    {"code": "nested_compound", "name_zh": "复合嵌套", "max_severity": "L3", "hint": "两个上述谬误嵌套于同一推理链，仅 difficulty>70 出现"}
+  ],
+  "severity_scale": {
+    "L1": "明显，常见于大众文本",
+    "L2": "中等，需要辨认限定词/结构",
+    "L3": "复合或极隐蔽，仅高难度出现"
+  },
+  "forbidden": [
+    "虚构具体数据、引文、实验结果、人名机构（可歪论证，不可歪事实）",
+    "对真实个人或机构的指控与贬损",
+    "医疗、金融等高风险领域的可操作建议",
+    "把曲解伪装成事实陈述：反常识 ≠ 反事实，事实性陈述必须与知识库检索结果一致"
+  ],
+  "watermark_template": "本文由思辨训练系统生成，为教学目的刻意埋入 {N} 处逻辑谬误，请勿外传引用。"
+}
